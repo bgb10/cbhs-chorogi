@@ -1,13 +1,13 @@
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { useEffect, useState } from 'react'
 import QRCode from 'react-native-qrcode-svg'
+
+const regex = /makeCode\('(\d+)'\)/
 
 export default function QRScreen() {
   const [code, setCode] = useState('test')
 
-  useEffect(() => {
-    const regex = /makeCode\('(\d+)'\)/
-
+  const loadQR = () => {
     fetch('http://115.92.96.29:8080/employee/loginProc.jsp', {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -19,12 +19,15 @@ export default function QRScreen() {
     })
       .then((res) => res.text())
       .then((text) => text.match(regex))
-      .then((e) => setCode(e[1]))
-  }, [])
+      .then((e) => setCode((before) => e[1]))
+  }
+
+  useEffect(() => loadQR(), [])
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {/* <Text>QR</Text> */}
       <QRCode value={`${code}`} />
+      <Button onPress={loadQR} title="reload" color="#841584" />
     </View>
   )
 }
