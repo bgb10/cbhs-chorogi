@@ -24,7 +24,8 @@
     "react-native-svg": "13.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@types/react": "^18.0.28"
   },
   "private": true
 }
