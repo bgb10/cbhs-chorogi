@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import { useEffect } from 'react'
+import QRCode from 'react-native-qrcode-svg'
 
 export default function QRScreen() {
   useEffect(() => {
@@ -9,7 +10,8 @@ export default function QRScreen() {
   }, [])
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>QR</Text>
+      {/* <Text>QR</Text> */}
+      <QRCode value="http://awesome.link.qr" />
     </View>
   )
 }
