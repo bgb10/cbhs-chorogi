@@ -2,20 +2,8 @@ import { React, useEffect, useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const storeData = async (value) => {
-  try {
-    const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('@storage_Key', jsonValue)
-  } catch (e) {
-    // saving error
-  }
-}
-
 const LoginScreen = (props) => {
-  const [id, setId] = useState('')
-  const [pw, setPw] = useState('')
-
-  const handleLogin = () => {
+  const onPressHandler = () => {
     // 개인정보 저장
     // 로그인 성공할 경우
     // TODO: 추후에 중복 제거 필요
@@ -26,7 +14,7 @@ const LoginScreen = (props) => {
         'content-type': 'application/x-www-form-urlencoded'
       },
       referrer: 'http://115.92.96.29:8080/employee/login.jsp',
-      body: `USER_ID=${id}&USER_PW=${pw}&SAVE_PW=on`,
+      body: `USER_ID=${props.id}&USER_PW=${props.pw}&SAVE_PW=on`,
       method: 'POST',
       mode: 'cors'
     })
@@ -34,7 +22,6 @@ const LoginScreen = (props) => {
       .then((text) => {
         const res = text.match(regex)
         if (res == null) {
-          console.log('다시 로그인 ㄱ')
           props.onLogin(false)
         } else {
           props.onLogin(true)
@@ -49,9 +36,9 @@ const LoginScreen = (props) => {
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>로그인 안되었을 때 초기 화면</Text>
       <Text>충북학사</Text>
-      <TextInput style={styles.input} value={id} placeholder="학사 번호" onChangeText={setId} />
-      <TextInput style={styles.input} value={pw} placeholder="비밀 번호" onChangeText={setPw} />
-      <Button title="로그인" color="#841584" onPress={handleLogin} />
+      <TextInput style={styles.input} value={props.id} placeholder="학사 번호" onChangeText={props.setId} />
+      <TextInput style={styles.input} value={props.pw} placeholder="비밀 번호" onChangeText={props.setPw} />
+      <Button title="로그인" color="#841584" onPress={onPressHandler} />
     </View>
   )
 }
