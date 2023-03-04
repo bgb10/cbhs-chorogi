@@ -23,6 +23,8 @@ export default function QRScreen() {
     setLastUpdatedTimeStamp(formattedDate)
   }
 
+  // QR 코드를 발급하는 코드는 학사번호 + MM + SS 로 구성
+  // 1초 안에 여러번 Reload 버튼을 눌러도 코드가 발급 코드가 그대로이기 때문에 QR 코드는 바뀌지 않는다.
   const loadQR = () => {
     fetch('http://115.92.96.29:8080/employee/loginProc.jsp', {
       headers: {
