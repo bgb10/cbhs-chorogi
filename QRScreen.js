@@ -6,6 +6,22 @@ const regex = /makeCode\('(\d+)'\)/
 
 export default function QRScreen() {
   const [code, setCode] = useState('test')
+  const [lastUpdatedTimeStamp, setLastUpdatedTimeStamp] = useState(Date.now())
+
+  const updateLastUpdatedTimeStamp = () => {
+    const now = new Date(Date.now())
+    const year = now.getFullYear()
+    const month = now.getMonth() + 1
+    const day = now.getDate()
+    const hours = now.getHours()
+    const minutes = now.getMinutes()
+
+    const formattedDate = `${year}.${month.toString().padStart(2, '0')}.${day.toString().padStart(2, '0')} ${hours
+      .toString()
+      .padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
+
+    setLastUpdatedTimeStamp(formattedDate)
+  }
 
   const loadQR = () => {
     fetch('http://115.92.96.29:8080/employee/loginProc.jsp', {
@@ -20,13 +36,18 @@ export default function QRScreen() {
       .then((res) => res.text())
       .then((text) => text.match(regex))
       .then((e) => setCode((before) => e[1]))
+
+    updateLastUpdatedTimeStamp()
   }
 
-  useEffect(() => loadQR(), [])
+  useEffect(() => {
+    loadQR()
+  }, [])
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <QRCode value={`${code}`} />
+      <Text>{`발급 날짜: ${lastUpdatedTimeStamp}`}</Text>
       <Button onPress={loadQR} title="reload" color="#841584" />
     </View>
   )
