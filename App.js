@@ -2,10 +2,10 @@ import { useState, React } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import QRScreen from './QRScreen'
-import MealScreen from './MealScreen'
-import SettingsScreen from './SettingsScreen'
-import LoginScreen from './LoginScreen'
+import QRScreen from './src/screens/QRScreen'
+import MealScreen from './src/screens/MealScreen'
+import SettingsScreen from './src/screens/SettingsScreen'
+import LoginScreen from './src/screens/LoginScreen'
 
 const Tab = createBottomTabNavigator()
 
