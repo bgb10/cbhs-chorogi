@@ -99,7 +99,7 @@ export default function App() {
 
               if (route.name === 'QR') {
                 iconName = focused ? 'compass' : 'compass-outline';
-              } else if (route.name == '식단') {
+              } else if (route.name === '식단') {
                 iconName = focused ? 'today' : 'today-outline';
               } else if (route.name === '설정') {
                 iconName = focused ? 'ios-list' : 'ios-list-outline';
