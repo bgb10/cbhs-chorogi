@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const LoginScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const onPressHandler = () => {
     setIsLoading(true)
@@ -27,8 +28,10 @@ const LoginScreen = (props) => {
         const res = text.match(regex)
         if (res == null) {
           props.onLogin(false)
+          setIsError(true)
         } else {
           props.onLogin(true)
+          setIsError(false)
           // 여기서 isSaved 를 true 로 해줘야 하는데 어떻게 할 수 있지?
           // 부모 state 를 자식이 변경하는게 가능한가? redux 가 필요하려나?
           // depth 가 깊지 않으므로 굳이 상태관리 라이브러리는 필요 없다. 물론 recoil 사용하면 더 좋긴 함.
@@ -57,6 +60,7 @@ const LoginScreen = (props) => {
         editable={!isLoading}
       />
       <Button title="로그인" color="#841584" onPress={onPressHandler} disabled={isLoading} />
+      <Text style={!isError && { display: 'none' }}>Error. Login Failed!</Text>
     </View>
   )
 }

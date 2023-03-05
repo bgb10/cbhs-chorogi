@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator()
 const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('test5', jsonValue)
+    await AsyncStorage.setItem('test6', jsonValue)
   } catch (e) {
     // saving error
   }
@@ -20,7 +20,7 @@ const storeData = async (value) => {
 
 const getData = async () => {
   try {
-    const jsonValue = await AsyncStorage.getItem('test5')
+    const jsonValue = await AsyncStorage.getItem('test6')
     return jsonValue != null ? JSON.parse(jsonValue) : null
   } catch (e) {
     // error reading value
