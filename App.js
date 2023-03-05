@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator()
 const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('test6', jsonValue)
+    await AsyncStorage.setItem('test7', jsonValue)
   } catch (e) {
     // saving error
   }
@@ -21,9 +21,8 @@ const storeData = async (value) => {
 
 const getData = async () => {
   try {
-    const jsonValue = await AsyncStorage.getItem('test6')
-    return { id: '11', pw: 'asdf' }
-    // return jsonValue != null ? JSON.parse(jsonValue) : null
+    const jsonValue = await AsyncStorage.getItem('test7')
+    return jsonValue != null ? JSON.parse(jsonValue) : null
   } catch (e) {
     // error reading value
   }
@@ -31,13 +30,14 @@ const getData = async () => {
 
 export default function App() {
   const [loginStatus, setLoginStatus] = useState(false)
-  const [id, setId] = useState('testId')
-  const [pw, setPw] = useState('testPw')
+  const [id, setId] = useState('')
+  const [pw, setPw] = useState('')
 
   const onLoginHandler = (p) => {
     setLoginStatus(p)
 
     if (p === true) {
+      console.log('tqtas')
       storeData({ id, pw })
     }
   }
@@ -49,6 +49,9 @@ export default function App() {
           console.log('not saved!')
           return
         }
+
+        setId(data.id)
+        setPw(data.pw)
 
         const regex = /makeCode\('(\d+)'\)/
 
@@ -74,9 +77,6 @@ export default function App() {
               // do nothing
             } else {
               setLoginStatus(true)
-
-              setId(data.id)
-              setPw(data.pw)
             }
           })
       },

@@ -53,6 +53,7 @@ const LoginScreen = (props) => {
       <TextInput
         style={styles.input}
         value={props.id}
+        autoCapitalize="none"
         placeholder="학사 번호"
         onChangeText={props.setId}
         editable={!isLoading}
@@ -61,6 +62,7 @@ const LoginScreen = (props) => {
         style={styles.input}
         value={props.pw}
         placeholder="비밀 번호"
+        secureTextEntry
         onChangeText={props.setPw}
         editable={!isLoading}
       />
