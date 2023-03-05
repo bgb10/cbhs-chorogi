@@ -3,7 +3,11 @@ import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const LoginScreen = (props) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const onPressHandler = () => {
+    setIsLoading(true)
+
     // 개인정보 저장
     // 로그인 성공할 경우
     // TODO: 추후에 중복 제거 필요
@@ -30,15 +34,29 @@ const LoginScreen = (props) => {
           // depth 가 깊지 않으므로 굳이 상태관리 라이브러리는 필요 없다. 물론 recoil 사용하면 더 좋긴 함.
         }
       })
+
+    setIsLoading(false)
   }
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>로그인 안되었을 때 초기 화면</Text>
       <Text>충북학사</Text>
-      <TextInput style={styles.input} value={props.id} placeholder="학사 번호" onChangeText={props.setId} />
-      <TextInput style={styles.input} value={props.pw} placeholder="비밀 번호" onChangeText={props.setPw} />
-      <Button title="로그인" color="#841584" onPress={onPressHandler} />
+      <TextInput
+        style={styles.input}
+        value={props.id}
+        placeholder="학사 번호"
+        onChangeText={props.setId}
+        editable={!isLoading}
+      />
+      <TextInput
+        style={styles.input}
+        value={props.pw}
+        placeholder="비밀 번호"
+        onChangeText={props.setPw}
+        editable={!isLoading}
+      />
+      <Button title="로그인" color="#841584" onPress={onPressHandler} disabled={isLoading} />
     </View>
   )
 }

@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator()
 const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem('test1', jsonValue)
+    await AsyncStorage.setItem('test5', jsonValue)
   } catch (e) {
     // saving error
   }
@@ -20,7 +20,7 @@ const storeData = async (value) => {
 
 const getData = async () => {
   try {
-    const jsonValue = await AsyncStorage.getItem('test1')
+    const jsonValue = await AsyncStorage.getItem('test5')
     return jsonValue != null ? JSON.parse(jsonValue) : null
   } catch (e) {
     // error reading value
@@ -29,8 +29,8 @@ const getData = async () => {
 
 export default function App() {
   const [isSaved, setIsSaved] = useState(false)
-  const [id, setId] = useState('')
-  const [pw, setPw] = useState('')
+  const [id, setId] = useState('testId')
+  const [pw, setPw] = useState('testPw')
 
   const onLoginHandler = (p) => {
     setIsSaved(p)
@@ -43,6 +43,11 @@ export default function App() {
   useState(() => {
     getData().then(
       (data) => {
+        if (data === null) {
+          console.log('not saved!')
+          return
+        }
+
         const regex = /makeCode\('(\d+)'\)/
 
         // 로그인 시도
