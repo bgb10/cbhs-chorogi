@@ -6,6 +6,7 @@ import QRScreen from './src/screens/QRScreen'
 import MealScreen from './src/screens/MealScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import LoginScreen from './src/screens/LoginScreen'
+import Toast from 'react-native-toast-message'
 
 const Tab = createBottomTabNavigator()
 
@@ -21,19 +22,20 @@ const storeData = async (value) => {
 const getData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('test6')
-    return jsonValue != null ? JSON.parse(jsonValue) : null
+    return { id: '11', pw: 'asdf' }
+    // return jsonValue != null ? JSON.parse(jsonValue) : null
   } catch (e) {
     // error reading value
   }
 }
 
 export default function App() {
-  const [isSaved, setIsSaved] = useState(false)
+  const [loginStatus, setLoginStatus] = useState(false)
   const [id, setId] = useState('testId')
   const [pw, setPw] = useState('testPw')
 
   const onLoginHandler = (p) => {
-    setIsSaved(p)
+    setLoginStatus(p)
 
     if (p === true) {
       storeData({ id, pw })
@@ -64,9 +66,14 @@ export default function App() {
           .then((text) => {
             const res = text.match(regex)
             if (res == null) {
+              console.log('wrong id!')
+              Toast.show({
+                type: 'error',
+                text1: 'login fail!'
+              })
               // do nothing
             } else {
-              setIsSaved(true)
+              setLoginStatus(true)
 
               setId(data.id)
               setPw(data.pw)
@@ -79,17 +86,20 @@ export default function App() {
     )
   }, [])
 
-  if (isSaved) {
-    return (
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="QR" children={() => <QRScreen id={id} pw={pw} />} />
-          <Tab.Screen name="Meal" component={MealScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    )
-  } else {
-    return <LoginScreen id={id} pw={pw} setId={setId} setPw={setPw} onLogin={onLoginHandler}></LoginScreen>
-  }
+  return (
+    <>
+      {loginStatus ? (
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="QR" children={() => <QRScreen id={id} pw={pw} />} />
+            <Tab.Screen name="Meal" component={MealScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      ) : (
+        <LoginScreen id={id} pw={pw} setId={setId} setPw={setPw} onLogin={onLoginHandler} />
+      )}
+      <Toast />
+    </>
+  )
 }

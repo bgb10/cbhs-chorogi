@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import Toast from 'react-native-toast-message'
 
 const LoginScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -29,6 +30,10 @@ const LoginScreen = (props) => {
         if (res == null) {
           props.onLogin(false)
           setIsError(true)
+          Toast.show({
+            type: 'error',
+            text1: 'login fail!'
+          })
         } else {
           props.onLogin(true)
           setIsError(false)
