@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
 import { StyleSheet } from "react-native";
 
 export const Card = ({ meal }) => {
-
-    useEffect(() => {
-        console.log(JSON.stringify(meal, null, 4));
-    }, []);
     return (
         <View style={[styles.card, styles.shadow]}>
             <View>
@@ -32,7 +28,7 @@ export const Card = ({ meal }) => {
             </View>
             <View style={{ paddingTop: 12 }}>
                 <Text style={styles.text.heading2}>
-                    {`조식 🌙`}
+                    {`석식 🌙`}
                 </Text>
                 <Text style={styles.text.content}>
                     {`·${meal.din.join()}`}
@@ -44,30 +40,35 @@ export const Card = ({ meal }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: '100%',
+        width: '88%',
         height: 'auto',
         backgroundColor: 'white',
         borderRadius: 5,
-        borderColor: 'black',
-        borderStyle: "solid",
-        borderWidth: 1,
         paddingTop: 12,
         paddingLeft: 12,
+        paddingRight: 12,
         paddingBottom: 12,
+        marginTop: 12,
+        marginLeft: 24,
+        marginRight: 24,
         marginBottom: 12,
     },
-    shadow: {
-        shadowColor: 'black',
-        shadowOffset: {
-            width: 0,
-            height: -4,
+    shadow: Platform.OS === 'ios'
+        ? {
+            shadowColor: 'black',
+            shadowOffset: {
+                width: -2,
+                height: 4,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 5,
+        } : {
+            elevation: 20,
+            shadowColor: 'black'
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 5,
-    },
     text: {
         heading1: {
-            fontFamily: 'SpoqaHanSansNeo-Medium',
+            fontFamily: 'SpoqaHanSansNeo-Bold',
             fontSize: 18,
             fontWeight: "500",
         },
