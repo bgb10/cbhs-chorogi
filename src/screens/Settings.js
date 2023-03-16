@@ -1,22 +1,23 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { View, Text, FlatList, Pressable } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { AuthFunctionContext } from '../context/AuthProvider'
 import BottomModal from '../components/BottomModal'
 
-export default function SettingsScreen() {
+function Settings() {
+  const { signOut } = useContext(AuthFunctionContext)
   const [modalVisible, setModalVisible] = useState(false)
 
   const closePopup = () => setModalVisible(false)
   const openPopup = () => setModalVisible(true)
 
-  const testHandler = () => openPopup()
-  const testHandler2 = () => console.log(2)
-  const testHandler3 = () => console.log(3)
+  const testHandler2 = () => console.log('오류 제보')
+  const testHandler3 = () => console.log('로그 아웃') // 이것도 상단이랑 상태 교류를 해야함...
 
   const data = [
-    { id: 1, title: '시작 화면', handler: testHandler },
+    { id: 1, title: '시작 화면', handler: openPopup },
     { id: 2, title: '오류 제보', handler: testHandler2 },
-    { id: 3, title: '로그아웃', color: 'red', handler: testHandler3 }
+    { id: 3, title: '로그아웃', color: 'red', handler: signOut }
   ]
 
   // {버튼id : 버튼눌림여부} 로 이루어진 state 생성
@@ -63,7 +64,9 @@ export default function SettingsScreen() {
         }}
       >
         <View>
-          <Text style={item.color ? { color: item.color } : { color: 'black' }}>{item.title}</Text>
+          <Text style={item.color ? { color: item.color } : { color: 'black' }}>
+            {item.title}
+          </Text>
         </View>
         <View>
           <Text>
@@ -76,15 +79,28 @@ export default function SettingsScreen() {
 
   const closeModal = () => setModalVisible(false)
 
+  // TODO: 컴포넌트 디펜던시 파악 후 상태 관리 어떻게 할지 결정하기.
+
   const popupList = [
-    { id: 1, name: 'QR' },
-    { id: 2, name: '식단' }
+    { id: 1, name: 'QR', onPress: () => console.log(1) },
+    { id: 2, name: '식단', onPress: () => console.log(2) }
   ]
 
   return (
     <View>
-      <FlatList data={data} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
-      <BottomModal visible={modalVisible} onTouchOutside={closeModal} title="시작 화면" data={popupList} />
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      <BottomModal
+        visible={modalVisible}
+        onTouchOutside={closeModal}
+        title="시작 화면"
+        data={popupList}
+      />
     </View>
   )
 }
+
+export default Settings
