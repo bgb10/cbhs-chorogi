@@ -22,23 +22,12 @@ const AuthProvider = ({ children }) => {
             isLoggedIn: false,
             userToken: null
           }
-        case 'ENABLE_AUTO_LOGIN':
-          return {
-            ...prevState,
-            isAutoLoginEnabled: true
-          }
-        case 'DISABLE_AUTO_LOGIN':
-          return {
-            ...prevState,
-            isAutoLoginEnabled: false
-          }
       }
     },
     {
       isLoading: true,
       isLoggedIn: false,
-      userToken: { id: null, pw: null },
-      isAutoLoginEnabled: false
+      userToken: { id: null, pw: null }
     }
   )
 
@@ -47,19 +36,16 @@ const AuthProvider = ({ children }) => {
     let storedAutoLoginEnabled
 
     try {
+      storedAutoLoginEnabled = await SecureStore.getItemAsync(AUTO_LOGIN_ENABLED_KEY)
+
+      if (storedAutoLoginEnabled === null || storedAutoLoginEnabled === 'false') return
       storedPrivacy = await SecureStore.getItemAsync(AUTHENTICATION_KEY)
       const privacy = JSON.parse(storedPrivacy)
       await login(privacy.id, privacy.pw)
       dispatch({ type: 'SIGN_IN', token: privacy })
-    } catch (e) {}
-
-    try {
-      storedAutoLoginEnabled = await SecureStore.getItemAsync(AUTO_LOGIN_ENABLED_KEY)
-      const autoLoginEnabled = storedAutoLoginEnabled === 'true'
-      autoLoginEnabled
-        ? dispatch({ type: 'DISABLE_AUTO_LOGIN' })
-        : dispatch({ type: 'ENABLE_AUTO_LOGIN' })
-    } catch (e) {}
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   useEffect(() => {
@@ -81,12 +67,7 @@ const AuthProvider = ({ children }) => {
           throw e
         }
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
-      toggleAutoLogin: () => {
-        state.isAutoLoginEnabled
-          ? dispatch({ type: 'DISABLE_AUTO_LOGIN' })
-          : dispatch({ type: 'ENABLE_AUTO_LOGIN' })
-      }
+      signOut: () => dispatch({ type: 'SIGN_OUT' })
     }),
     []
   )

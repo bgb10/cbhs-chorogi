@@ -1,15 +1,10 @@
 import { React, useContext, useState } from 'react'
-import {
-  View,
-  Image,
-  Text,
-  TextInput,
-  StyleSheet,
-  Pressable
-} from 'react-native'
+import { View, Image, Text, TextInput, StyleSheet, Pressable } from 'react-native'
 import { AuthFunctionContext } from '../context/AuthProvider'
 import { useFonts } from 'expo-font'
 import Checkbox from 'expo-checkbox'
+import * as SecureStore from 'expo-secure-store'
+import { AUTO_LOGIN_ENABLED_KEY } from '../data/constants'
 
 const LoginScreen = () => {
   const [id, setId] = useState('')
@@ -22,17 +17,17 @@ const LoginScreen = () => {
     BMJUA: require('../../assets/fonts/BMJUA.otf')
   })
 
-  const { signIn, toggleAutoLogin } = useContext(AuthFunctionContext)
+  const { signIn } = useContext(AuthFunctionContext)
 
-  const onAutoLoginPressHandler = async () => {
+  const toggleAutoLogin = async () => {
     setIsAutoChecked((p) => !p)
-    toggleAutoLogin()
   }
 
   const onLoginPressHandler = async () => {
     try {
       setIsError(false)
-      await signIn({ id, pw })
+      signIn({ id, pw })
+      SecureStore.setItemAsync(AUTO_LOGIN_ENABLED_KEY, isAutoChecked ? 'true' : 'false')
     } catch (e) {
       setIsError(true)
       console.trace(e)
@@ -52,10 +47,7 @@ const LoginScreen = () => {
             alignItems: 'center'
           }}
         >
-          <Image
-            style={{ width: 48, height: 48 }}
-            source={require('../../assets/cbhs.png')}
-          />
+          <Image style={{ width: 48, height: 48 }} source={require('../../assets/cbhs.png')} />
           <Text style={styles.title}>충북학사</Text>
         </View>
         <TextInput
@@ -87,12 +79,12 @@ const LoginScreen = () => {
               alignItems: 'center',
               alignSelf: 'flex-start' // Set alignSelf to flex-start. Pressable component will only take up the space needed by its children.
             }}
-            onPress={onAutoLoginPressHandler}
+            onPress={toggleAutoLogin}
           >
             <Checkbox
               style={styles.checkbox}
               value={isAutoChecked}
-              onValueChange={onAutoLoginPressHandler}
+              onValueChange={toggleAutoLogin}
               color={isAutoChecked ? '#4630EB' : undefined}
             />
             <Text style={{ margin: 5 }}>자동 로그인</Text>
