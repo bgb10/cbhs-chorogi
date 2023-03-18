@@ -2,9 +2,10 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { StyleSheet, ScrollView, View, Text } from 'react-native'
 import { useFonts } from 'expo-font'
-import { Card } from '../components/card'
+import { Card } from '../components/Card'
 import { useQuery, QueryClient } from 'react-query'
 import fetchMeal from '../api/meal'
+import { HighlightedCard } from '../components/HighlightedCard'
 
 const Meal = () => {
   const { data: meals = [], isLoading, error } = useQuery('meals', fetchMeal)
@@ -21,8 +22,19 @@ const Meal = () => {
     return null
   }
 
+  const now = new Date()
+  const todayMeal = meals.filter((meal) => {
+    const yy = now.getFullYear().toString().substr(-2) // last two digits of year
+    const mm = (now.getMonth() + 1).toString().padStart(2, '0') // month with leading zero
+    const dd = now.getDate().toString().padStart(2, '0') // day with leading zero
+    const dateString = `${yy}${mm}${dd}` // combine into a string
+    return meal.date === dateString
+  })[0]
+  todayMeal.fullDate = '오늘의 식단 🍚'
+
   return (
     <ScrollView style={styles.container}>
+      <HighlightedCard meal={todayMeal}></HighlightedCard>
       {meals.map((meal, idx) => (
         <Card key={idx} meal={meal}></Card>
       ))}
