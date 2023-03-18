@@ -1,4 +1,4 @@
-import { React, useContext, useState } from 'react'
+import { React, useContext, useEffect, useState } from 'react'
 import { View, Image, Text, TextInput, StyleSheet, Pressable } from 'react-native'
 import { AuthFunctionContext } from '../context/AuthProvider'
 import { useFonts } from 'expo-font'
@@ -19,19 +19,17 @@ const LoginScreen = () => {
 
   const { signIn } = useContext(AuthFunctionContext)
 
-  const toggleAutoLogin = async () => {
+  const toggleAutoLogin = () => {
     setIsAutoChecked((p) => !p)
   }
 
   const onLoginPressHandler = async () => {
     try {
       setIsError(false)
-      signIn({ id, pw })
-      SecureStore.setItemAsync(AUTO_LOGIN_ENABLED_KEY, isAutoChecked ? 'true' : 'false')
+      await signIn({ id, pw })
+      await SecureStore.setItemAsync(AUTO_LOGIN_ENABLED_KEY, isAutoChecked ? 'true' : 'false')
     } catch (e) {
       setIsError(true)
-      console.trace(e)
-      // TODO: 모든 thrown error 를 catch 해주는 spring 의 controllerAdvice 같은 친구가 있지 않을까, 아마 nextJS 에 있지 않을까 생각
     }
   }
 

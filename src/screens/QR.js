@@ -67,10 +67,7 @@ const QR = () => {
       >{`발급 날짜: ${lastUpdatedTimeStamp}`}</Text>
       <View style={[styles.shadow]}>
         <TouchableOpacity style={styles.buttonReload} onPress={loadQR}>
-          <Image
-            style={{ width: 25, height: 25 }}
-            source={require('../../assets/refresh.png')}
-          />
+          <Image style={{ width: 25, height: 25 }} source={require('../../assets/refresh.png')} />
         </TouchableOpacity>
       </View>
     </View>

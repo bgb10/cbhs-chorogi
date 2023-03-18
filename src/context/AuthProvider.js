@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
       await login(privacy.id, privacy.pw)
       dispatch({ type: 'SIGN_IN', token: privacy })
     } catch (e) {
-      console.log(e)
+      throw e
     }
   }
 
@@ -63,7 +63,6 @@ const AuthProvider = ({ children }) => {
 
           dispatch({ type: 'SIGN_IN', token: { id, pw } })
         } catch (e) {
-          // TODO: stacktrace 제대로 뽑아내기. JS의 에러처리 로직을 아직 잘 모르겠다.
           throw e
         }
       },
