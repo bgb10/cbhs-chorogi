@@ -58,6 +58,8 @@ const QR = () => {
     const subscription = AppState.addEventListener('change', (nextAppState) => {
       if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
         loadQR()
+      } else if (appState.current.match(/active/) && nextAppState.match(/inactive|background/)) {
+        setIsLoading(true)
       }
 
       appState.current = nextAppState
