@@ -1,5 +1,5 @@
-import { View, Text, Button, Image, TouchableOpacity } from 'react-native'
-import { useContext, useEffect, useState } from 'react'
+import { View, Text, Button, Image, TouchableOpacity, AppState } from 'react-native'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { StyleSheet, Dimensions } from 'react-native'
 import { useFonts } from 'expo-font'
 
@@ -8,8 +8,10 @@ import login from '../api/login'
 import { AuthStateContext } from '../context/AuthProvider'
 
 const QR = () => {
+  const appState = useRef(AppState.currentState)
   const [code, setCode] = useState('test')
   const [lastUpdatedTimeStamp, setLastUpdatedTimeStamp] = useState(Date.now())
+  const [isLoading, setIsLoading] = useState(false)
   const [isFontLoaded, error] = useFonts({
     'SpoqaHanSansNeo-Medium': require('../../assets/fonts/SpoqaHanSansNeo-Medium.otf')
   })
@@ -36,16 +38,34 @@ const QR = () => {
   // 1초 안에 여러번 Reload 버튼을 눌러도 코드가 발급 코드가 그대로이기 때문에 QR 코드는 바뀌지 않는다.
   const loadQR = async () => {
     try {
+      setIsLoading(true)
       const code = await login(userToken.id, userToken.pw)
       setCode(code)
+      setIsLoading(false)
       updateLastUpdatedTimeStamp()
     } catch (e) {
       throw e
     }
   }
 
+  // 처음 component 로드시 QR 로드
   useEffect(() => {
     loadQR()
+  }, [])
+
+  // 백그라운드에서 돌아올 때 QR 코드 초기화
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (nextAppState) => {
+      if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+        loadQR()
+      }
+
+      appState.current = nextAppState
+    })
+
+    return () => {
+      subscription.remove()
+    }
   }, [])
 
   if (!isFontLoaded) {
@@ -55,7 +75,11 @@ const QR = () => {
   return (
     <View style={styles.container}>
       <View style={[styles.QRcontainer, styles.shadow]}>
-        <QRCode size={Dimensions.get('screen').width * 0.5} value={`${code}`} />
+        {isLoading ? (
+          <Text style={{ fontSize: 50 }}>Loading...</Text>
+        ) : (
+          <QRCode size={Dimensions.get('screen').width * 0.5} value={`${code}`} />
+        )}
       </View>
       <Text
         style={{
