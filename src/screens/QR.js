@@ -48,12 +48,12 @@ const QR = () => {
     }
   }
 
-  // 처음 component 로드시 QR 로드
+  // QR loads whenComponentMounts
   useEffect(() => {
     loadQR()
   }, [])
 
-  // 백그라운드에서 돌아올 때 QR 코드 초기화
+  // QR loads when appstate changes
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (nextAppState) => {
       if (appState.current.match(/inactive|background/) && nextAppState === 'active') {

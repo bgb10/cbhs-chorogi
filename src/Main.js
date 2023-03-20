@@ -6,7 +6,7 @@ import TabNavigation from './navigation/TabNavigation'
 const Main = () => {
   const { isLoggedIn } = useContext(AuthStateContext)
 
-  return isLoggedIn ? <TabNavigation /> : <LoginScreen />
+  return !isLoggedIn ? <LoginScreen /> : <TabNavigation></TabNavigation>
 }
 
 export default Main
