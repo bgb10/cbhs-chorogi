@@ -5,6 +5,7 @@ import SafeArea from './src/SafeArea'
 import { ErrorBoundary } from 'react-error-boundary'
 import { View, Text } from 'react-native'
 import MealQueryProvider from './src/MealQueryProvider'
+import SettingsProvider from './src/context/SettingsProvider'
 
 const Dummy = () => {
   return (
@@ -20,11 +21,13 @@ export default function App() {
 
     <SafeArea>
       <ErrorBoundary FallbackComponent={Dummy}>
-        <MealQueryProvider>
-          <AuthProvider>
-            <Main />
-          </AuthProvider>
-        </MealQueryProvider>
+        <SettingsProvider>
+          <MealQueryProvider>
+            <AuthProvider>
+              <Main />
+            </AuthProvider>
+          </MealQueryProvider>
+        </SettingsProvider>
       </ErrorBoundary>
     </SafeArea>
   )

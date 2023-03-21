@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { AppState } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -7,6 +7,7 @@ import Meal from '../screens/Meal'
 import Settings from '../screens/Settings'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import * as RootNavigation from './RootNavigation'
+import { SettingsContext } from '../context/SettingsProvider'
 
 const screenOptionsHandler = ({ route }) => ({
   tabBarIcon: ({ focused, color, size }) => {
@@ -29,12 +30,13 @@ const screenOptionsHandler = ({ route }) => ({
 
 const TabNavigation = () => {
   const appState = useRef(AppState.currentState)
+  const [settings] = useContext(SettingsContext)
 
   // 시작 화면을 QR 화면으로 세팅
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (nextAppState) => {
       if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-        RootNavigation.navigate('QR')
+        if (settings) RootNavigation.navigate('QR')
       }
       appState.current = nextAppState
     })
@@ -42,7 +44,7 @@ const TabNavigation = () => {
     return () => {
       subscription.remove()
     }
-  }, [])
+  }, [settings])
 
   const Tab = createBottomTabNavigator()
 
