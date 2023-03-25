@@ -1,6 +1,5 @@
 import { View, Text, Pressable } from 'react-native'
 import React, { useState, useContext } from 'react'
-// @ts-expect-error TS(6142): Module '../../context/SettingsProvider' was resolv... Remove this comment to see the full error message
 import { SettingsContext } from '../../context/SettingsProvider'
 import Checkbox from 'expo-checkbox'
 

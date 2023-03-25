@@ -5,7 +5,6 @@ import { useFonts } from 'expo-font'
 
 import QRCode from 'react-native-qrcode-svg'
 import login from '../../api/login'
-// @ts-expect-error TS(6142): Module '../../context/AuthProvider' was resolved t... Remove this comment to see the full error message
 import { AuthStateContext } from '../../context/AuthProvider'
 
 const QR = () => {
@@ -27,13 +26,10 @@ const QR = () => {
     const hours = now.getHours()
     const minutes = now.getMinutes()
 
-    // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
     const formattedDate = `${year}.${month.toString().padStart(2, '0')}.${day
       .toString()
-      // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
       .padStart(2, '0')} ${hours.toString().padStart(2, '0')}:${minutes
       .toString()
-      // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
       .padStart(2, '0')}`
 
     // @ts-expect-error TS(2345): Argument of type 'string' is not assignable to par... Remove this comment to see the full error message

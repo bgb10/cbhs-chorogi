@@ -1,10 +1,7 @@
 import React, { useContext } from 'react'
 import { StyleSheet, ScrollView, View, Text } from 'react-native'
-// @ts-expect-error TS(6142): Module '../../context/MealProvider' was resolved t... Remove this comment to see the full error message
 import { MealContext } from '../../context/MealProvider'
-// @ts-expect-error TS(6142): Module './MealCard' was resolved to '/Users/parkgw... Remove this comment to see the full error message
 import { MealCard } from './MealCard'
-// @ts-expect-error TS(6142): Module './TodayMealCard' was resolved to '/Users/p... Remove this comment to see the full error message
 import { TodayMealCard } from './TodayMealCard'
 
 const Meal = () => {
@@ -18,9 +15,7 @@ const Meal = () => {
   const now = new Date()
   let todayMealIdx = meals.findIndex((meal: any) => {
     const yy = now.getFullYear().toString().substr(-2) // last two digits of year
-    // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
     const mm = (now.getMonth() + 1).toString().padStart(2, '0') // month with leading zero
-    // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
     const dd = now.getDate().toString().padStart(2, '0') // day with leading zero
     const dateString = `${yy}${mm}${dd}` // combine into a string
     return meal.date === dateString
