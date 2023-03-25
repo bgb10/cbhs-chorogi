@@ -1,19 +1,17 @@
 {
   "expo": {
-    "name": "cbhs",
-    "slug": "cbhs",
+    "name": "초록이",
+    "slug": "greenie",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/cbhs.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/cbhs2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "config": {
@@ -22,10 +20,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/cbhs.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.livetoday.cbhs"
+      "package": "com.livetoday.greenie"
     },
     "web": {
       "favicon": "./assets/favicon.png"
