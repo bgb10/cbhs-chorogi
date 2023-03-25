@@ -18,3 +18,5 @@ web-build/
 
 package-lock.json
 yarn.lock
+
+/coverage-ts
