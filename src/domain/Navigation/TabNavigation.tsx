@@ -14,14 +14,8 @@ import * as RootNavigation from './tabNavigator'
 // @ts-expect-error TS(6142): Module '../../context/SettingsProvider' was resolv... Remove this comment to see the full error message
 import { SettingsContext } from '../../context/SettingsProvider'
 
-const screenOptionsHandler = ({
-  route
-}: any) => ({
-  tabBarIcon: ({
-    focused,
-    color,
-    size
-  }: any) => {
+const screenOptionsHandler = ({ route }: any) => ({
+  tabBarIcon: ({ focused, color, size }: any) => {
     let iconName
 
     if (route.name === 'QR') {
@@ -31,7 +25,7 @@ const screenOptionsHandler = ({
     } else if (route.name === '설정') {
       iconName = focused ? 'ios-list' : 'ios-list-outline'
     }
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
     return <Ionicons name={iconName} size={size} color={color} />
   },
   tabBarActiveTintColor: 'black',
@@ -63,15 +57,12 @@ const TabNavigation = () => {
   const Tab = createBottomTabNavigator()
 
   return (
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <NavigationContainer ref={RootNavigation.navigationRef}>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Tab.Navigator screenOptions={screenOptionsHandler}>
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Tab.Screen name="QR" component={QR} />
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
         <Tab.Screen name="식단" component={Meal} />
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
         <Tab.Screen name="설정" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>

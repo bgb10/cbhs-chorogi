@@ -81,19 +81,15 @@ const QR = () => {
   }
 
   return (
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <View style={styles.container}>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View style={[styles.QRcontainer, styles.shadow]}>
         {isLoading ? (
-          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <Text style={{ fontSize: 50 }}>Loading...</Text>
         ) : (
-          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <QRCode size={Dimensions.get('screen').width * 0.5} value={`${code}`} />
         )}
       </View>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
       <Text
         style={{
           fontFamily: 'SpoqaHanSansNeo-Medium',
@@ -102,11 +98,9 @@ const QR = () => {
           marginBottom: 24
         }}
       >{`발급 날짜: ${lastUpdatedTimeStamp}`}</Text>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
       <View style={[styles.shadow]}>
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <TouchableOpacity style={styles.buttonReload} onPress={loadQR}>
-          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <Image
             style={{ width: 25, height: 25 }}
             source={require('../../../assets/refresh.png')}

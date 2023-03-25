@@ -1,14 +1,12 @@
 import { createContext, useReducer, useEffect, useMemo } from 'react'
 import login from '../api/login'
 import * as SecureStore from 'expo-secure-store'
-import { AUTHENTICATION_KEY, AUTO_LOGIN_ENABLED_KEY } from '../data/Constants'
+import { AUTHENTICATION_KEY, AUTO_LOGIN_ENABLED_KEY } from '../data/constants'
 
 export const AuthStateContext = createContext(null)
 export const AuthFunctionContext = createContext(null)
 
-const AuthProvider = ({
-  children
-}: any) => {
+const AuthProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(
     (prevState: any, action: any) => {
       switch (action.type) {
@@ -57,10 +55,7 @@ const AuthProvider = ({
 
   const authFuncton = useMemo(
     () => ({
-      signIn: async ({
-        id,
-        pw
-      }: any) => {
+      signIn: async ({ id, pw }: any) => {
         try {
           await login(id, pw)
 
@@ -78,9 +73,7 @@ const AuthProvider = ({
   )
 
   return (
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <AuthStateContext.Provider value={state}>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <AuthFunctionContext.Provider value={authFuncton}>{children}</AuthFunctionContext.Provider>
     </AuthStateContext.Provider>
   )

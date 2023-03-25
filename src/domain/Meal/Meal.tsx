@@ -29,9 +29,7 @@ const Meal = () => {
   const afterMeals = meals.slice(todayMealIdx + 1)
 
   return (
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Text
         style={{
           width: '88%',
@@ -43,26 +41,24 @@ const Meal = () => {
       >
         오늘의 식사 🍚
       </Text>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
       <TodayMealCard meal={meals[todayMealIdx]}></TodayMealCard>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
       <Text style={{ width: '88%', margin: 10, marginBottom: 0, fontSize: 20, fontWeight: '500' }}>
         이후 식단
       </Text>
       {afterMeals.map((m: any, idx: any) => {
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         return m.brf.includes('&nbsp;') ? null : <MealCard key={idx} meal={m}></MealCard>
       })}
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
       <Text style={{ width: '88%', margin: 10, marginBottom: 0, fontSize: 20, fontWeight: '500' }}>
         지난 식단
       </Text>
       {beforeMeals.map((m: any, idx: any) => {
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         return m.brf.includes('&nbsp;') ? null : <MealCard key={idx} meal={m}></MealCard>
       })}
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

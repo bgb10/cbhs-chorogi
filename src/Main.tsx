@@ -10,7 +10,6 @@ const Main = () => {
   // @ts-expect-error TS(2339): Property 'isLoggedIn' does not exist on type 'null... Remove this comment to see the full error message
   const { isLoggedIn } = useContext(AuthStateContext)
 
-  // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   return !isLoggedIn ? <LoginScreen /> : <TabNavigation></TabNavigation>
 }
 

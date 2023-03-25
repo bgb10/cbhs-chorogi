@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "CommonJS",
-    "checkJs": true,
-    "jsx": "react-native",
-    "esModuleInterop": true
-  },
-  "exclude": ["node_modules", "**/node_modules/*"]
-}

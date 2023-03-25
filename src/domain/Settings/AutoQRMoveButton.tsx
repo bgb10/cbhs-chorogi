@@ -10,7 +10,6 @@ const AutoQRMoveButton = () => {
   const [settings, actions] = useContext(SettingsContext)
 
   return (
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Pressable
       onPressIn={() => setIsPressed(true)}
       onPressOut={() => setIsPressed(false)}
@@ -23,14 +22,11 @@ const AutoQRMoveButton = () => {
         justifyContent: 'space-between'
       }}
     >
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View>
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={{ color: 'black' }}>자동 화면 이동</Text>
       </View>
-      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+
       <View>
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Checkbox
           value={settings}
           onValueChange={actions.toggle}

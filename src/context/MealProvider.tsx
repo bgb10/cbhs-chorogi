@@ -3,9 +3,7 @@ import fetchMeal from '../api/meal'
 
 export const MealContext = createContext(null)
 
-const MealProvider = ({
-  children
-}: any) => {
+const MealProvider = ({ children }: any) => {
   const [meals, setMeals] = useState('')
   const [loading, setLoading] = useState(true)
   let timer: any = null
@@ -50,7 +48,6 @@ const MealProvider = ({
     }
   }, [])
 
-  // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   return <MealContext.Provider value={[meals, loading]}>{children}</MealContext.Provider>
 }
 
