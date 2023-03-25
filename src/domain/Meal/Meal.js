@@ -19,12 +19,8 @@ const Meal = () => {
     const dateString = `${yy}${mm}${dd}` // combine into a string
     return meal.date === dateString
   })
-  console.log(todayMealIdx)
-
   const beforeMeals = meals.slice(0, todayMealIdx)
   const afterMeals = meals.slice(todayMealIdx + 1)
-  console.log(beforeMeals)
-  console.log(afterMeals)
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>

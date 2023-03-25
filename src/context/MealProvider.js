@@ -23,7 +23,6 @@ const MealProvider = ({ children }) => {
     const nextDay = new Date()
     nextDay.setDate(nextDay.getDate() + 1)
     nextDay.setHours(9, 0, 10, 0)
-    console.log(nextDay.toUTCString())
 
     // 일정 시간 간격으로 되는가?
     // nextDay.setHours(nextDay.getHours() + 9, nextDay.getMinutes(), nextDay.getSeconds() + 5) // 5초 간격으로 fetch
@@ -31,6 +30,7 @@ const MealProvider = ({ children }) => {
     // nextDay.setSeconds(nextDay.getSeconds() + 10)
 
     const reloadTime = nextDay - now
+    console.log(nextDay.toUTCString())
 
     timer = setTimeout(() => {
       load()
