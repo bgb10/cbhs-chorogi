@@ -2,16 +2,12 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { AppState } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-// @ts-expect-error TS(6142): Module '../QR/QR' was resolved to '/Users/parkgwan... Remove this comment to see the full error message
 import QR from '../QR/QR'
-// @ts-expect-error TS(6142): Module '../Meal/Meal' was resolved to '/Users/park... Remove this comment to see the full error message
 import Meal from '../Meal/Meal'
-// @ts-expect-error TS(6142): Module '../Settings/Settings' was resolved to '/Us... Remove this comment to see the full error message
 import Settings from '../Settings/Settings'
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import * as RootNavigation from './tabNavigator'
-// @ts-expect-error TS(6142): Module '../../context/SettingsProvider' was resolv... Remove this comment to see the full error message
 import { SettingsContext } from '../../context/SettingsProvider'
 
 const screenOptionsHandler = ({ route }: any) => ({
