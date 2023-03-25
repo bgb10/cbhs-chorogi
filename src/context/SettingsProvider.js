@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import { createContext, useContext, useMemo, useRef, useState, useEffect } from 'react'
-import { AUTO_QR_SCREEN_MOVE_KEY } from '../data/Constants'
+import { AUTO_QR_SCREEN_MOVE_KEY } from '../data/constants'
 import * as SecureStore from 'expo-secure-store'
 
 export const SettingsContext = createContext(null)

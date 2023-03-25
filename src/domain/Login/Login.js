@@ -4,7 +4,7 @@ import { AuthFunctionContext } from '../../context/AuthProvider'
 import { useFonts } from 'expo-font'
 import Checkbox from 'expo-checkbox'
 import * as SecureStore from 'expo-secure-store'
-import { AUTO_LOGIN_ENABLED_KEY } from '../../data/Constants'
+import { AUTO_LOGIN_ENABLED_KEY } from '../../data/constants'
 
 const LoginScreen = () => {
   const [id, setId] = useState('')
