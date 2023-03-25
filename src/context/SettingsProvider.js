@@ -9,7 +9,7 @@ export const SettingsContext = createContext(null)
 // 백그라운드에서 돌아올 때 QR 로 화면 자동 이동, (추후 푸쉬알림 정도?)
 // 일단 화면 자동이동만 고려하고, 나머지는 여쭤보자.
 const SettingsProvider = ({ children }) => {
-  const [settings, setSettings] = useState(false)
+  const [settings, setSettings] = useState(true)
   const actions = useMemo(
     () => ({
       toggle() {
@@ -21,7 +21,8 @@ const SettingsProvider = ({ children }) => {
 
   const getSettingsFromStorage = async () => {
     const storedSettings = await SecureStore.getItemAsync(AUTO_QR_SCREEN_MOVE_KEY)
-    setSettings(storedSettings === 'true' ? true : false)
+    const newSettings = storedSettings === null ? true : storedSettings === 'true' ? true : false
+    setSettings(newSettings)
   }
 
   useEffect(() => {
