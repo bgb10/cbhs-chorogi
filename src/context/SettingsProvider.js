@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native'
 import { createContext, useContext, useMemo, useRef, useState, useEffect } from 'react'
-import { AUTO_QR_SCREEN_MOVE_KEY } from '../data/constants'
+import { AUTO_QR_SCREEN_MOVE_KEY } from '../data/Constants'
 import * as SecureStore from 'expo-secure-store'
 
-export const SettingsContext = createContext()
+export const SettingsContext = createContext(null)
 
 // 그냥 예를 들어서 세팅할 값이 4개라고 치자. 그럼 어떻게 전달하지?
 // 백그라운드에서 돌아올 때 QR 로 화면 자동 이동, (추후 푸쉬알림 정도?)

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { View, Text, Platform } from 'react-native'
 import { StyleSheet } from 'react-native'
 
-export const HighlightedCard = ({ meal }) => {
+export const MealCard = ({ meal }) => {
   return (
     <View style={[styles.card, styles.shadow]}>
       <View>
@@ -37,9 +37,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginLeft: 24,
     marginRight: 24,
-    marginBottom: 12,
-    borderWidth: 1.5,
-    borderColor: '#00A551'
+    marginBottom: 12
   },
   shadow:
     Platform.OS === 'ios'

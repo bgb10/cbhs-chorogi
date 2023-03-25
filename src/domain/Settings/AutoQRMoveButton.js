@@ -1,10 +1,9 @@
 import { View, Text, Pressable } from 'react-native'
 import React, { useState, useContext } from 'react'
-import Icon from 'react-native-vector-icons/Ionicons'
-import { SettingsContext } from '../context/SettingsProvider'
+import { SettingsContext } from '../../context/SettingsProvider'
 import Checkbox from 'expo-checkbox'
 
-const AutoQR = () => {
+const AutoQRMoveButton = () => {
   const [isPressed, setIsPressed] = useState(false)
   const [settings, actions] = useContext(SettingsContext)
 
@@ -35,4 +34,4 @@ const AutoQR = () => {
   )
 }
 
-export default AutoQR
+export default AutoQRMoveButton

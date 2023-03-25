@@ -1,10 +1,9 @@
 import { View, Text, Pressable } from 'react-native'
 import React, { useContext, useState } from 'react'
-import { AuthFunctionContext } from '../context/AuthProvider'
-import Checkbox from 'expo-checkbox'
+import { AuthFunctionContext } from '../../context/AuthProvider'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const Logout = () => {
+const LogoutButton = () => {
   const [isPressed, setIsPressed] = useState(false)
   const { signOut } = useContext(AuthFunctionContext)
 
@@ -33,4 +32,4 @@ const Logout = () => {
   )
 }
 
-export default Logout
+export default LogoutButton

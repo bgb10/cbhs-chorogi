@@ -1,7 +1,7 @@
-import { createContext, React, useReducer, useEffect, useMemo } from 'react'
+import { createContext, useReducer, useEffect, useMemo } from 'react'
 import login from '../api/login'
 import * as SecureStore from 'expo-secure-store'
-import { AUTHENTICATION_KEY, AUTO_LOGIN_ENABLED_KEY } from '../data/constants'
+import { AUTHENTICATION_KEY, AUTO_LOGIN_ENABLED_KEY } from '../data/Constants'
 
 export const AuthStateContext = createContext(null)
 export const AuthFunctionContext = createContext(null)

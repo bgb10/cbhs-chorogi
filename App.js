@@ -1,11 +1,11 @@
 import React, { StrictMode } from 'react'
-import AuthProvider from './src/context/AuthProvider'
-import Main from './src/Main'
-import SafeArea from './src/SafeArea'
-import { ErrorBoundary } from 'react-error-boundary'
 import { View, Text } from 'react-native'
-import MealQueryProvider from './src/MealQueryProvider'
+import ErrorBoundary from 'react-native-error-boundary'
+import AuthProvider from './src/context/AuthProvider'
+import MealProvider from './src/context/MealProvider'
 import SettingsProvider from './src/context/SettingsProvider'
+import SafeArea from './src/layout/SafeArea'
+import Main from './src/Main'
 
 const Dummy = () => {
   return (
@@ -18,15 +18,14 @@ const Dummy = () => {
 export default function App() {
   return (
     // TODO: strictMode 추가시 에러나는 이유를 모르겠다.
-
     <SafeArea>
       <ErrorBoundary FallbackComponent={Dummy}>
         <SettingsProvider>
-          <MealQueryProvider>
+          <MealProvider>
             <AuthProvider>
               <Main />
             </AuthProvider>
-          </MealQueryProvider>
+          </MealProvider>
         </SettingsProvider>
       </ErrorBoundary>
     </SafeArea>

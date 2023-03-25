@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { AppState } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import QR from '../screens/QR'
-import Meal from '../screens/Meal'
-import Settings from '../screens/Settings'
+import QR from '../QR/QR'
+import Meal from '../Meal/Meal'
+import Settings from '../Settings/Settings'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import * as RootNavigation from './RootNavigation'
-import { SettingsContext } from '../context/SettingsProvider'
+import * as RootNavigation from './tabNavigator'
+import { SettingsContext } from '../../context/SettingsProvider'
 
 const screenOptionsHandler = ({ route }) => ({
   tabBarIcon: ({ focused, color, size }) => {

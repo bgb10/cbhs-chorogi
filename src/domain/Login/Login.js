@@ -1,10 +1,10 @@
-import { React, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Image, Text, TextInput, StyleSheet, Pressable } from 'react-native'
-import { AuthFunctionContext } from '../context/AuthProvider'
+import { AuthFunctionContext } from '../../context/AuthProvider'
 import { useFonts } from 'expo-font'
 import Checkbox from 'expo-checkbox'
 import * as SecureStore from 'expo-secure-store'
-import { AUTO_LOGIN_ENABLED_KEY } from '../data/constants'
+import { AUTO_LOGIN_ENABLED_KEY } from '../../data/Constants'
 
 const LoginScreen = () => {
   const [id, setId] = useState('')
@@ -13,8 +13,8 @@ const LoginScreen = () => {
   const [isAutoChecked, setIsAutoChecked] = useState(true)
 
   const [isFontLoaded, error] = useFonts({
-    'SpoqaHanSansNeo-Medium': require('../../assets/fonts/SpoqaHanSansNeo-Medium.otf'),
-    BMJUA: require('../../assets/fonts/BMJUA.otf')
+    'SpoqaHanSansNeo-Medium': require('../../../assets/fonts/SpoqaHanSansNeo-Medium.otf'),
+    BMJUA: require('../../../assets/fonts/BMJUA.otf')
   })
 
   const { signIn } = useContext(AuthFunctionContext)
@@ -45,7 +45,7 @@ const LoginScreen = () => {
             alignItems: 'center'
           }}
         >
-          <Image style={{ width: 48, height: 48 }} source={require('../../assets/cbhs.png')} />
+          <Image style={{ width: 48, height: 48 }} source={require('../../../assets/cbhs.png')} />
           <Text style={styles.title}>충북학사</Text>
         </View>
         <TextInput

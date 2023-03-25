@@ -1,11 +1,11 @@
-import { View, Text, Button, Image, TouchableOpacity, AppState } from 'react-native'
+import { View, Text, Button, Image, TouchableOpacity, AppState, Platform } from 'react-native'
 import { useContext, useEffect, useState, useRef } from 'react'
 import { StyleSheet, Dimensions } from 'react-native'
 import { useFonts } from 'expo-font'
 
 import QRCode from 'react-native-qrcode-svg'
-import login from '../api/login'
-import { AuthStateContext } from '../context/AuthProvider'
+import login from '../../api/login'
+import { AuthStateContext } from '../../context/AuthProvider'
 
 const QR = () => {
   const appState = useRef(AppState.currentState)
@@ -13,7 +13,7 @@ const QR = () => {
   const [lastUpdatedTimeStamp, setLastUpdatedTimeStamp] = useState(Date.now())
   const [isLoading, setIsLoading] = useState(false)
   const [isFontLoaded, error] = useFonts({
-    'SpoqaHanSansNeo-Medium': require('../../assets/fonts/SpoqaHanSansNeo-Medium.otf')
+    'SpoqaHanSansNeo-Medium': require('../../../assets/fonts/SpoqaHanSansNeo-Medium.otf')
   })
   const { userToken } = useContext(AuthStateContext)
 
@@ -93,7 +93,10 @@ const QR = () => {
       >{`발급 날짜: ${lastUpdatedTimeStamp}`}</Text>
       <View style={[styles.shadow]}>
         <TouchableOpacity style={styles.buttonReload} onPress={loadQR}>
-          <Image style={{ width: 25, height: 25 }} source={require('../../assets/refresh.png')} />
+          <Image
+            style={{ width: 25, height: 25 }}
+            source={require('../../../assets/refresh.png')}
+          />
         </TouchableOpacity>
       </View>
     </View>

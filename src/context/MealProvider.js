@@ -1,8 +1,7 @@
-import React, { createContext, useEffect, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
+import fetchMeal from '../api/meal'
 
-import fetchMeal from './api/meal'
-
-export const MealContext = createContext()
+export const MealContext = createContext(null)
 
 const MealProvider = ({ children }) => {
   const [meals, setMeals] = useState('')

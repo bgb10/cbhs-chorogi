@@ -1,10 +1,7 @@
-import { useContext, useState } from 'react'
-import { View, Text, FlatList, Pressable } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
-import AutoQR from '../components/AutoQRScreenMove'
-import Logout from '../components/Logout'
-import { AuthFunctionContext } from '../context/AuthProvider'
-import { SettingsContext } from '../context/SettingsProvider'
+import React from 'react'
+import { View, FlatList } from 'react-native'
+import AutoQRMoveButton from './AutoQRMoveButton'
+import LogoutButton from './LogoutButton'
 
 function Settings() {
   // 여기 data 안에 component 를 넣어주면 렌더링 가능
@@ -12,9 +9,9 @@ function Settings() {
   const data = [
     {
       id: 1,
-      component: <AutoQR></AutoQR>
+      component: <AutoQRMoveButton></AutoQRMoveButton>
     },
-    { id: 2, component: <Logout></Logout> }
+    { id: 2, component: <LogoutButton></LogoutButton> }
   ]
 
   const renderItem = ({ item }) => {

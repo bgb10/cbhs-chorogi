@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "module": "ES6",
-    "jsx": "preserve",
-    "checkJs": true
+    "module": "CommonJS",
+    "checkJs": true,
+    "jsx": "react-native",
+    "esModuleInterop": true
   },
   "exclude": ["node_modules", "**/node_modules/*"]
 }
