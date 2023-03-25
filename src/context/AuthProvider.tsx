@@ -6,9 +6,11 @@ import { AUTHENTICATION_KEY, AUTO_LOGIN_ENABLED_KEY } from '../data/Constants'
 export const AuthStateContext = createContext(null)
 export const AuthFunctionContext = createContext(null)
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({
+  children
+}: any) => {
   const [state, dispatch] = useReducer(
-    (prevState, action) => {
+    (prevState: any, action: any) => {
       switch (action.type) {
         case 'SIGN_IN':
           return {
@@ -40,6 +42,7 @@ const AuthProvider = ({ children }) => {
 
       if (storedAutoLoginEnabled === null || storedAutoLoginEnabled === 'false') return
       storedPrivacy = await SecureStore.getItemAsync(AUTHENTICATION_KEY)
+      // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
       const privacy = JSON.parse(storedPrivacy)
       await login(privacy.id, privacy.pw)
       dispatch({ type: 'SIGN_IN', token: privacy })
@@ -54,7 +57,10 @@ const AuthProvider = ({ children }) => {
 
   const authFuncton = useMemo(
     () => ({
-      signIn: async ({ id, pw }) => {
+      signIn: async ({
+        id,
+        pw
+      }: any) => {
         try {
           await login(id, pw)
 
@@ -72,7 +78,9 @@ const AuthProvider = ({ children }) => {
   )
 
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <AuthStateContext.Provider value={state}>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <AuthFunctionContext.Provider value={authFuncton}>{children}</AuthFunctionContext.Provider>
     </AuthStateContext.Provider>
   )

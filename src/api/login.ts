@@ -1,6 +1,6 @@
 const regex = /makeCode\('(\d+)'\)/
 
-const login = async (id, pw) => {
+const login = async (id: any, pw: any) => {
   try {
     const res = await fetch('http://115.92.96.29:8080/employee/loginProc.jsp', {
       headers: {

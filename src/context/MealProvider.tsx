@@ -3,14 +3,17 @@ import fetchMeal from '../api/meal'
 
 export const MealContext = createContext(null)
 
-const MealProvider = ({ children }) => {
+const MealProvider = ({
+  children
+}: any) => {
   const [meals, setMeals] = useState('')
   const [loading, setLoading] = useState(true)
-  let timer = null
+  let timer: any = null
 
   const load = async () => {
     setLoading(true)
     const meals = await fetchMeal()
+    // @ts-expect-error TS(2345): Argument of type '{ fullDate: string; date: string... Remove this comment to see the full error message
     setMeals(meals)
     setLoading(false)
   }
@@ -29,6 +32,7 @@ const MealProvider = ({ children }) => {
     // 표적한 시간에 되는가?
     // nextDay.setSeconds(nextDay.getSeconds() + 10)
 
+    // @ts-expect-error TS(2362): The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
     const reloadTime = nextDay - now
     console.log(nextDay.toUTCString())
 
@@ -46,6 +50,7 @@ const MealProvider = ({ children }) => {
     }
   }, [])
 
+  // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   return <MealContext.Provider value={[meals, loading]}>{children}</MealContext.Provider>
 }
 

@@ -2,22 +2,36 @@ import { useEffect } from 'react'
 import { View, Text, Platform } from 'react-native'
 import { StyleSheet } from 'react-native'
 
-export const TodayMealCard = ({ meal }) => {
+export const TodayMealCard = ({
+  meal
+}: any) => {
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <View style={[styles.card, styles.shadow]}>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={styles.text.heading1}>{`${meal.fullDate}`}</Text>
       </View>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View style={{ paddingTop: 12 }}>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={styles.text.heading2}>{`조식 🐓`}</Text>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={styles.text.content}>{`·${meal.brf.join()}`}</Text>
       </View>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View style={{ paddingTop: 12 }}>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={styles.text.heading2}>{`중식 🌞`}</Text>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={styles.text.content}>{`·${meal.lun.join()}`}</Text>
       </View>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View style={{ paddingTop: 12 }}>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={styles.text.heading2}>{`석식 🌙`}</Text>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Text style={styles.text.content}>{`·${meal.din.join()}`}</Text>
       </View>
     </View>
@@ -57,6 +71,7 @@ const styles = StyleSheet.create({
           shadowColor: 'black'
         },
   text: {
+    // @ts-expect-error TS(2322): Type '{ heading1: { fontSize: number; fontWeight: ... Remove this comment to see the full error message
     heading1: {
       // fontFamily: 'SpoqaHanSansNeo-Bold',
       fontSize: 18,

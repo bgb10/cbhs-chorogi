@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font'
 
 import QRCode from 'react-native-qrcode-svg'
 import login from '../../api/login'
+// @ts-expect-error TS(6142): Module '../../context/AuthProvider' was resolved t... Remove this comment to see the full error message
 import { AuthStateContext } from '../../context/AuthProvider'
 
 const QR = () => {
@@ -15,6 +16,7 @@ const QR = () => {
   const [isFontLoaded, error] = useFonts({
     'SpoqaHanSansNeo-Medium': require('../../../assets/fonts/SpoqaHanSansNeo-Medium.otf')
   })
+  // @ts-expect-error TS(2339): Property 'userToken' does not exist on type 'null'... Remove this comment to see the full error message
   const { userToken } = useContext(AuthStateContext)
 
   const updateLastUpdatedTimeStamp = () => {
@@ -25,12 +27,16 @@ const QR = () => {
     const hours = now.getHours()
     const minutes = now.getMinutes()
 
+    // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
     const formattedDate = `${year}.${month.toString().padStart(2, '0')}.${day
       .toString()
+      // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
       .padStart(2, '0')} ${hours.toString().padStart(2, '0')}:${minutes
       .toString()
+      // @ts-expect-error TS(2550): Property 'padStart' does not exist on type 'string... Remove this comment to see the full error message
       .padStart(2, '0')}`
 
+    // @ts-expect-error TS(2345): Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     setLastUpdatedTimeStamp(formattedDate)
   }
 
@@ -75,14 +81,19 @@ const QR = () => {
   }
 
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <View style={styles.container}>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View style={[styles.QRcontainer, styles.shadow]}>
         {isLoading ? (
+          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <Text style={{ fontSize: 50 }}>Loading...</Text>
         ) : (
+          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <QRCode size={Dimensions.get('screen').width * 0.5} value={`${code}`} />
         )}
       </View>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Text
         style={{
           fontFamily: 'SpoqaHanSansNeo-Medium',
@@ -91,8 +102,11 @@ const QR = () => {
           marginBottom: 24
         }}
       >{`발급 날짜: ${lastUpdatedTimeStamp}`}</Text>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <View style={[styles.shadow]}>
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <TouchableOpacity style={styles.buttonReload} onPress={loadQR}>
+          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <Image
             style={{ width: 25, height: 25 }}
             source={require('../../../assets/refresh.png')}

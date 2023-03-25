@@ -10,6 +10,7 @@ const fetchMeal = async () => {
   const dateRegex = /[^0-9]/g
   const unescapeRegex = /\n|\t/g
   const result = fplansParsed.map((fplan) => {
+    // @ts-expect-error TS(2531): Object is possibly 'null'.
     const fullDate = fplan[0].querySelector('a').innerText
     const date = fullDate.replace(/\D/g, '')
     const brf = fplan[1].innerText.replace(unescapeRegex, '').split(',')
