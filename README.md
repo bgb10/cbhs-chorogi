@@ -1,11 +1,16 @@
 # CBHS chorogi (충북학사 초록이)
 ![image](https://github.com/bgb10/cbhs-chorogi/assets/25452313/8d5dd054-104a-495b-a320-fbcb5318069b)
 
+The CBHS Assistant app `cbhs-chorogi` addresses inconveniences faced by students at CBHS. It simplifies the process of obtaining QR codes for access and provides quick access to the dorm's meal menu. Developed using `React Native` and `Expo`.
+> `CBHS` is 'Chung Buk Hak-Sa', which means local dormitory for people from Chungchungbuk-do, Korea.
+
 # Motivation
 
 ## Inconvenient Web-Based QR Check-In
 
-![학사 입출입](https://github.com/bgb10/cbhs-chorogi/assets/25452313/c61e4edf-7d86-4bad-aada-195946447138)
+<p align="center">
+  <img src="https://github.com/bgb10/cbhs-chorogi/assets/25452313/c61e4edf-7d86-4bad-aada-195946447138" alt="CBHS chorogi">
+</p>
 
 CBHS has a QR check-in system for student access. To obtain a QR code, students must log in to the CBHS server, which is currently only possible through a web page. Therefore, the existing procedure for student access was as follows:
 1. Students access the login page by bookmarking it in their browser or searching for the link in front of the kiosk.
@@ -19,7 +24,9 @@ This method has the following problems:
 
 ## Inconvenient Meal Menu Check
 
-![cbhs-meal-uncomfortable](https://github.com/bgb10/cbhs-chorogi/assets/25452313/cabc7240-5431-46a2-ba12-3797346b4be6)
+<p align="center">
+  <img src="https://github.com/bgb10/cbhs-chorogi/assets/25452313/cabc7240-5431-46a2-ba12-3797346b4be6" alt="CBHS chorogi" style="height: 70%;">
+</p>
 
 Students always keep checking the dorm's meal menu (I do too XD), as it is available only through a web page. Moreover, 
 the menu does not prioritize displaying today's menu, requiring students to search for and verify the menu up to the current date.
@@ -48,7 +55,9 @@ npm start
 
 # Issues
 ## How to generate QR code?
-![image](https://github.com/bgb10/cbhs-chorogi/assets/25452313/9d990036-3f29-4a89-a6c8-edfc488fa769)
+<p align="center">
+  <img src="https://github.com/bgb10/cbhs-chorogi/assets/25452313/9d990036-3f29-4a89-a6c8-edfc488fa769" alt="CBHS chorogi" height="500px">
+</p>
 Since the QR code generation logic using Server-Side Rendering (SSR) was not publicly available, we initially considered fetching the page directly and extracting the QR code image. However, we was curious about the information encoded in the QR code, we attempted to decode it.
 Analyzing the QR code revealed a discernible pattern. It was generating the QR code based on the student ID, current minute, and current second (MMSS). Thus, generating the QR code required the input of the student ID along with the current minute and second. 
 However, to ensure security, QR code generation was disabled if the user was not logged into the server.
