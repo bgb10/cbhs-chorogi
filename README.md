@@ -1,7 +1,7 @@
 # CBHS chorogi (충북학사 초록이)
 ![image](https://github.com/bgb10/cbhs-chorogi/assets/25452313/8d5dd054-104a-495b-a320-fbcb5318069b)
 
-The CBHS Assistant app `cbhs-chorogi` addresses inconveniences faced by students at CBHS. It simplifies the process of obtaining QR codes for access and provides quick access to the dorm's meal menu. Developed using `React Native` and `Expo`.
+The CBHS Assistant app `cbhs-chorogi` addresses inconveniences faced by students at CBHS. It simplifies the process of obtaining QR codes for access and provides quick access to the dorm's meal menu. Developed using `React Native` and `Expo`. Distributed it to the Google Play Store, and put up posters in CBHS for advertising. Statistics showed that almost all Android users (around 90-100) in CBHS installed `cbhs-chorogi`. Also, when I ask people they say that CBHS makes check-in much faster and simplified to see what's on the menu for the day.
 > `CBHS` is 'Chung Buk Hak-Sa', which means local dormitory for people from Chungchungbuk-do, Korea.
 
 # Motivation
@@ -81,3 +81,14 @@ Utilized the `useEffect` hook in React to automatically issue the QR code upon a
 This functionality was triggered only if the 'automatic login' button was enabled.
 
 # Achievements
+
+<img width="804" alt="image" src="https://github.com/bgb10/cbhs-chorogi/assets/25452313/6714258b-31cf-4832-ad25-9e489e33894a">
+
+We developed an app, distributed it to the Play Store, and put up posters in the elevators and on each floor of the CBHS. Based on this, we achieved the following results:
+
+- Statistics showed that there were about 100 users, and considering the percentage of Android users in their 20s in Korea, which is 35% (the usage rate according to [Korea Gallup](https://news.mt.co.kr/mtview.php?no=2023071810192166703)) out of 320 total users in CBHS, it was 96, which means that almost everyone was interested in the app and installed it.
+- In fact, I saw a lot of people using QR check-in. When I ask people, they say that CBHS makes check-in much faster!
+- I love how easy it is to see what's on the menu for the day. (very important)
+
+# Contributions
+> I quit CBHS, so this repository no more maintained. But, I've had a few people ask if they can use this code to build new apps. Please do! You're always welcome.
