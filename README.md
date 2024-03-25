@@ -1,7 +1,7 @@
 # CBHS chorogi (충북학사 초록이)
 ![image](https://github.com/bgb10/cbhs-chorogi/assets/25452313/8d5dd054-104a-495b-a320-fbcb5318069b)
 
-The CBHS Assistant app `cbhs-chorogi` addresses inconveniences faced by students at CBHS. It simplifies the process of obtaining QR codes for access and provides quick access to the dorm's meal menu. Developed using `React Native` and `Expo`. Distributed it to the Google Play Store, and put up posters in CBHS for advertising. Statistics showed that almost all Android users (around 90-100) in CBHS installed `cbhs-chorogi`. Also, when I ask people they say that CBHS makes check-in much faster and simplified to see what's on the menu for the day.
+The CBHS Assistant app `cbhs-chorogi` addresses inconveniences faced by students at CBHS. It Simplifies QR code based entry system and provides quick access to the meal. Developed using `React Native` and `Expo`. Distributed it to the Google Play Store, and put up posters in CBHS for advertising. Statistics showed that almost all Android users (around 90-100) in CBHS installed `cbhs-chorogi`. Also, when I ask people they say that CBHS makes check-in much faster and simplified to see what's on the menu for the day.
 > `CBHS` is 'Chung Buk Hak-Sa', which means local dormitory for people from Chungchungbuk-do, Korea.
 
 # Motivation
