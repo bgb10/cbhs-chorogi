@@ -82,7 +82,10 @@ This functionality was triggered only if the 'automatic login' button was enable
 
 # Achievements
 
-<img width="804" alt="image" src="https://github.com/bgb10/cbhs-chorogi/assets/25452313/6714258b-31cf-4832-ad25-9e489e33894a">
+<p align="center">
+  <img src="https://github.com/bgb10/cbhs-chorogi/assets/25452313/6714258b-31cf-4832-ad25-9e489e33894a" alt="CBHS chorogi" height="700px">
+  <img src="https://github.com/bgb10/cbhs-chorogi/assets/25452313/909d449f-1757-4f74-85ed-1a3f3831f953" alt="CBHS chorogi" height="700px">
+</p>
 
 We developed an app, distributed it to the Play Store, and put up posters in the elevators and on each floor of the CBHS. Based on this, we achieved the following results:
 
